@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prompt Tips Cheat Sheet</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 800px;
+      margin: auto;
+      padding: 40px;
+      background-color: #fff;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+    p.subtitle {
+      text-align: center;
+      font-size: 1.1em;
+      color: #666;
+      margin-bottom: 30px;
+    }
+    ol {
+      counter-reset: item;
+      list-style: none;
+      padding-left: 0;
+    }
+    ol li {
+      counter-increment: item;
+      margin-bottom: 15px;
+      padding-left: 30px;
+      position: relative;
+      line-height: 1.5;
+    }
+    ol li::before {
+      content: counter(item) ".";
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+      color: #0077cc;
+    }
+    @media print {
+      body {
+        padding: 0;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>20 Tips to Create Better Prompts</h1>
+  <p class="subtitle">Your quick cheat sheet for working smarter with ChatGPT</p>
+  <ol>
+    <li>Be specific about what you want – e.g., "Write a friendly reminder email about an upcoming dentist appointment" is better than "Write an email."</li>
+    <li>State the format you expect – like “Make a list,” “Write a dialogue,” “Use bullet points.”</li>
+    <li>Mention the audience – e.g., "Explain black holes to a 10-year-old" vs. "Explain black holes to a physics student."</li>
+    <li>Add background info – e.g., “I run a local bakery and need ideas for Instagram posts.”</li>
+    <li>Describe the goal – “Help me come up with a persuasive argument for this blog post.”</li>
+    <li>Include tone or style – “Write it in a casual, friendly tone” or “Make it sound professional.”</li>
+    <li>Assign a role – e.g., “Act like a travel agent planning a budget trip to Italy.”</li>
+    <li>Use scenarios – “Pretend you're helping someone plan their wedding speech.”</li>
+    <li>Start small, then build – First ask “Give me ideas for a presentation,” then follow up with “Turn idea #2 into an outline.”</li>
+    <li>Use step-by-step instructions – Ask: “Walk me through the process of…”</li>
+    <li>Ask for revisions – “Make it shorter,” “Use simpler language,” or “Add a joke.”</li>
+    <li>Chain prompts together – Use follow-ups: “Great. Now turn that into a catchy title.”</li>
+    <li>Try: “Give me 10 ideas for…” – Great for brainstorming.</li>
+    <li>Try: “Summarize this text in 3 bullet points.”</li>
+    <li>Try: “Compare X and Y in a table.”</li>
+    <li>Mix styles or voices – “Explain AI like a pirate” or “Write this like a fairy tale.”</li>
+    <li>Use fun challenges – “Create a fake news headline about cats running the government.”</li>
+    <li>Avoid vague words like “good” or “better” – Be precise: “More exciting,” “Shorter,” “For teens.”</li>
+    <li>Avoid too many questions in one prompt – Split them up to get clearer answers.</li>
+    <li>Ask ChatGPT how to improve your prompt – literally say: “How can I ask this better?” or “What info would you need to give a better answer?”</li>
+  </ol>
+</body>
+</html>

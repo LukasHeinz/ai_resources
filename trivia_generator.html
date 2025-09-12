@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>AI Trivia Quiz Generator</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: 2rem auto; line-height: 1.5; }
+    input { padding: 8px; width: 60%; }
+    button { padding: 8px 16px; margin-left: 8px; }
+    #output { margin-top: 1.5rem; padding: 1rem; border: 1px solid #ccc; background: #f9f9f9; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>AI Trivia Quiz Generator</h1>
+  <p>
+    Enter a topic and I’ll ask ChatGPT to generate a medium-difficulty trivia question about it.
+    The quiz will have 4 options. <br>
+    ⚠️ Restricted: no violence, sex, religion, or politics.
+  </p>
+
+  <div>
+    <input type="text" id="topic" placeholder="Enter a topic (e.g. astronomy)" />
+    <button id="generate">Generate Quiz</button>
+  </div>
+
+  <div id="output"></div>
+
+  <script>
+    const API_KEY = "PUT-YOUR-OPENAI-API-KEY-HERE"; // ⚠️ insecure in client-side
+
+    document.getElementById('generate').addEventListener('click', async () => {
+      const topic = document.getElementById('topic').value.trim();
+      const output = document.getElementById('output');
+      if (!topic) {
+        output.textContent = "Please enter a topic.";
+        return;
+      }
+      output.textContent = "Generating quiz...";
+
+      const prompt = `Create ONE trivia question about "${topic}". 
+The question should be medium difficulty, include exactly 4 answer options (A–D), 
+and clearly indicate the correct answer at the end. 
+Do not include any content about violence, sex, religion, or politics. 
+Format your response like:
+Question: ...
+A) ...
+B) ...
+C) ...
+D) ...
+Correct answer: ...`;
+
+      try {
+        const res = await fetch("https://api.openai.com/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${API_KEY}`
+          },
+          body: JSON.stringify({
+            model: "gpt-4o-mini",
+            messages: [{ role: "user", content: prompt }],
+            max_tokens: 300,
+            temperature: 0.7
+          })
+        });
+
+        if (!res.ok) {
+          const errText = await res.text();
+          output.textContent = "Error: " + res.status + " " + errText;
+          return;
+        }
+
+        const data = await res.json();
+        const reply = data.choices?.[0]?.message?.content?.trim();
+        output.textContent = reply || "No reply from AI.";
+      } catch (err) {
+        output.textContent = "Network error: " + err.message;
+      }
+    });
+  </script>
+</body>
+</html>

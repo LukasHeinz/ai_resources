@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>ChatGPT Greeting</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 3rem auto; text-align: center; }
+    button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    #output { margin-top: 2rem; white-space: pre-wrap; font-size: 1.1em; }
+  </style>
+</head>
+<body>
+  <h1>👋 ChatGPT Greeting Demo</h1>
+  <p>This simple page asks ChatGPT for a friendly greeting using a Vercel serverless function.</p>
+
+  <button id="greet">Get Greeting</button>
+  <div id="output"></div>
+
+  <script>
+    document.getElementById('greet').addEventListener('click', async () => {
+      const out = document.getElementById('output');
+      out.textContent = 'Asking ChatGPT...';
+
+      try {
+        const res = await fetch('/api/greet');
+        const data = await res.json();
+        out.textContent = data.reply || 'No response from AI.';
+      } catch (err) {
+        out.textContent = 'Error: ' + err.message;
+      }
+    });
+  </script>
+</body>
+</html>

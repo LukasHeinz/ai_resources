@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>ChatGPT Greeting</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+</head>
+<body>
+  <h1>ChatGPT Greeting</h1>
+  <button id="greet">Get Greeting</button>
+  <pre id="output"></pre>
+
+  <script>
+    document.getElementById('greet').addEventListener('click', async () => {
+      const out = document.getElementById('output');
+      out.textContent = "Asking ChatGPT...";
+
+      try {
+        const res = await fetch('/api/greet');
+        const data = await res.json();
+        out.textContent = data.reply ?? "No response";
+      } catch (err) {
+        out.textContent = "Error: " + err.message;
+      }
+    });
+  </script>
+</body>
+</html>

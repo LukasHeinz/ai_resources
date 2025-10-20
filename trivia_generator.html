@@ -27,7 +27,7 @@
   <div id="output"></div>
 
   <script>
-    const API_KEY = OPENAI_API_KEY;
+    const API_KEY = ${AI_API_KEY};
 
     document.getElementById('generate').addEventListener('click', async () => {
       const topic = document.getElementById('topic').value.trim();
@@ -55,7 +55,7 @@ Correct answer: ...`;
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ` + OPENAI_API_KEY;
+            "Authorization": `Bearer ${AI_API_KEY}`;
           },
           body: JSON.stringify({
             model: "gpt-4o-mini",
